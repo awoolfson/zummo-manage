@@ -1,4 +1,4 @@
-##Airtable API/.env test 
+# Airtable API/.env test 
 import os
 from dotenv import load_dotenv, dotenv_values
 from flask import Flask, render_template
@@ -6,16 +6,16 @@ import requests as rq
 
 
 load_dotenv() 
-PAT = (os.getenv("PAT")) #-> str: #initalizes personal access token
-BASE = "appr8SepSgx9SP6ir" #zummobikes base id
-TBL = "tblXBR1YTXYvGhwWJ" #zummobikes table id
+AIR_PAT = (os.getenv("AIR_PAT")) #-> str: #initalizes personal access token
+AIR_BASE = "appr8SepSgx9SP6ir" #-> str: #zummobikes base id
+AIR_TBL = "tblXBR1YTXYvGhwWJ" #-> str: #zummobikes table id
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     # Make a GET request to the Airtable API with the personal access token
-    url = f'https://api.airtable.com/v0/{BASE}/{TBL}'
-    headers = {'Authorization': f'Bearer {PAT}'}
+    url = f'https://api.airtable.com/v0/{AIR_BASE}/{AIR_TBL}'
+    headers = {'Authorization': f'Bearer {AIR_PAT}'}
 
     response = rq.get(url, headers=headers)
     if response.status_code == 200:
