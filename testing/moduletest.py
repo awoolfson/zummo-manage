@@ -4,7 +4,6 @@ from dotenv import load_dotenv, dotenv_values
 from flask import Flask, render_template
 import requests as rq
 
-
 load_dotenv() 
 AIR_PAT = (os.getenv("AIR_PAT")) #-> str: #initalizes personal access token
 AIR_BASE = "appr8SepSgx9SP6ir" #-> str: #zummobikes base id
