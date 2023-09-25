@@ -1,5 +1,3 @@
-import os
-from dotenv import load_dotenv
 from pyairtable import Table
 import re
 from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_CONTACTS
