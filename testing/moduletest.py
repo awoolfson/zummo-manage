@@ -1,30 +1,29 @@
 # Airtable API/.env test 
 import os
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 from flask import Flask, render_template
 import requests as rq
 
-
 load_dotenv() 
-AIR_PAT = (os.getenv("AIR_PAT")) #-> str: #initalizes personal access token
-AIR_BASE = "appr8SepSgx9SP6ir" #-> str: #zummobikes base id
-AIR_TBL = "tblXBR1YTXYvGhwWJ" #-> str: #zummobikes table id
+AIRTABLE_PAT = (os.getenv("AIRTABLE_PAT")) #-> str: #initalizes personal access token
+AIRTABLE_TEST_BASE_ID = (os.getenv("AIRTABLE_TEST_BASE_ID")) #-> str: #initalizes base ID
+AIRTABLE_TEST_CONTACTS = (os.getenv("AIRTABLE_TEST_CONTACTS")) #-> str: #initalizes table
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     # Make a GET request to the Airtable API with the personal access token
-    url = f'https://api.airtable.com/v0/{AIR_BASE}/{AIR_TBL}'
-    headers = {'Authorization': f'Bearer {AIR_PAT}'}
+    url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TEST_CONTACTS}'
+    headers = {'Authorization': f'Bearer {AIRTABLE_PAT}'}
 
-    response = rq.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
+    airtable_response = rq.get(url, headers=headers)
+    if airtable_response.status_code == 200:
+        data = airtable_response.json()
         records = data.get('records', [])
         return render_template('index.html', records=records)
     else:
-        return f'Error: {response.status_code} - {response.text}'
+        return f'Error: {airtable_response.status_code} - {airtable_response.text}'
 
 if __name__ == '__main__':
     app.run(debug=True)
-
