@@ -1,9 +1,10 @@
-from pyairtable import Table
+from pyairtable import Api
 import re
 from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_CONTACTS
 
 def get_contact_by_phone(phone_number: str) -> list:
-    contacts_tbl = Table(AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_CONTACTS)
+    api = Api(AIRTABLE_PAT)
+    contacts_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_CONTACTS)
     contacts = contacts_tbl.all()
     
     phone_number = re.sub(r'[^0-9]', '', phone_number)
@@ -17,3 +18,6 @@ def get_contact_by_phone(phone_number: str) -> list:
                 matches.append(contact)
     
     return matches
+
+if __name__ == "__main__":
+    print(get_contact_by_phone("+1 (123) 456-7890"))
