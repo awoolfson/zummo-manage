@@ -7,9 +7,9 @@ from pprint import pprint #used to pretty print response.json
 
 load_dotenv() 
 AIRTABLE_PAT = (os.getenv("AIRTABLE_PAT")) #-> str: #initalizes personal access token
-AIRTABLE_BASE_ID = "appr8SepSgx9SP6ir" #initalizes base id
-AIRTABLE_CONTACTS = "tblXBR1YTXYvGhwWJ" #initalizes contacts table
-url = f'https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_CONTACTS}'
+AIRTABLE_TEST_BASE_ID = "appr8SepSgx9SP6ir" #initalizes base id
+AIRTABLE_TEST_CONTACTS = "tblXBR1YTXYvGhwWJ" #initalizes contacts table
+url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TEST_CONTACTS}'
 headers = {'Authorization': f'Bearer {AIRTABLE_PAT}'}
 response = rq.get(url, headers=headers)
 
