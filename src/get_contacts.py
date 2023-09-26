@@ -1,9 +1,9 @@
 from pyairtable import Table
 import re
-from config import AIRTABLE_PAT, AIRTABLE_BASEID, AIRTABLE_CONTACTS
+from config import AIRTABLE_PAT, AIRTABLE_BASE_ID, AIRTABLE_CONTACTS
 
 def get_contact_by_phone(phone_number: str) -> list:
-    contacts_tbl = Table(AIRTABLE_PAT, AIRTABLE_BASEID, AIRTABLE_CONTACTS)
+    contacts_tbl = Table(AIRTABLE_PAT, AIRTABLE_BASE_ID, AIRTABLE_CONTACTS)
     contacts = contacts_tbl.all()
     
     phone_number = re.sub(r'[^0-9]', '', phone_number)
