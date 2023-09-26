@@ -19,5 +19,10 @@ def get_contact_by_phone(phone_number: str) -> list:
     
     return matches
 
-if __name__ == "__main__":
-    print(get_contact_by_phone("+1 (123) 456-7890"))
+def main():
+    if __name__ == "__main__":
+        # get user input for phone number
+        phone_number = input("Enter a phone number: ")
+        print(get_contact_by_phone(phone_number))
+        
+main()
