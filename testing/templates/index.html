@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airtable Data</title>
+</head>
+<body>
+    <h1>Employee Cities</h1>
+    <ul>
+        {% for record in records %}
+            <li>{{ record.fields.City }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
