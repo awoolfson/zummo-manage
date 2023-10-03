@@ -6,7 +6,9 @@ load_dotenv()
 AIRTABLE_PAT = (os.getenv("AIRTABLE_PAT")) #-> str: #initalizes personal access token
 
 # for airtable test instance
-AIRTABLE_TEST_BASE_ID = "appr8SepSgx9SP6ir"
+
+############### str: -> initalizes tables
+AIRTABLE_TEST_BASE_ID = "appr8SepSgx9SP6ir" 
 AIRTABLE_TEST_CONTACTS = "tblXBR1YTXYvGhwWJ"
 AIRTABLE_TEST_EMPLOYEES_AND_VOLUNTEERS = "tblk3Qd3sKV9JPNtx"
 AIRTABLE_TEST_SERVICES = "tbl2hG3F6LlSW3Bm7"

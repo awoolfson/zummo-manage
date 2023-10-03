@@ -6,8 +6,8 @@ import requests as rq
 
 load_dotenv() 
 AIRTABLE_PAT = (os.getenv("AIRTABLE_PAT")) #-> str: #initalizes personal access token
-AIRTABLE_TEST_BASE_ID = (os.getenv("AIRTABLE_TEST_BASE_ID")) #-> str: #initalizes base ID
-AIRTABLE_TEST_CONTACTS = (os.getenv("AIRTABLE_TEST_CONTACTS")) #-> str: #initalizes table
+AIRTABLE_TEST_BASE_ID = ("appr8SepSgx9SP6ir") #-> str: #initalizes base ID
+AIRTABLE_TEST_CONTACTS = ("tblXBR1YTXYvGhwWJ") #-> str: #initalizes table
 
 app = Flask(__name__)
 
