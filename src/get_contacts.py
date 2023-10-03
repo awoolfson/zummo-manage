@@ -1,6 +1,6 @@
 from pyairtable import Api
 import re
-from config import AIRTABLE_PAT, AIRTABLE_BASEID, AIRTABLE_CONTACTS
+from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_CONTACTS
 
 def get_contacts_by_phone(phone_number: str) -> list:
     api = Api(AIRTABLE_PAT)
