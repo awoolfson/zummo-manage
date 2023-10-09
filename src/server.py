@@ -17,6 +17,7 @@ def home(path):
 def get_services():
     name = request.args.get('name')
     phone_number = request.args.get('phone_number')
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
