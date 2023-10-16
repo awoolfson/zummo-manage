@@ -38,7 +38,7 @@ def main():
             fieldname = input("Enter field name as they appear in the string here: ")
             newitem = input("Enter what you would like to add to the field here: ")
             add_to_db(fieldname, newitem)
-        if answer == "d":
+        elif answer == "d":
             print(f"This is a refrence you can use to find the id of the item you would like to delete")
             pprint(full_tbl)
             item_id = input("What is the id of the item you would like to delete: ")
