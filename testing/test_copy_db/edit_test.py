@@ -1,6 +1,6 @@
-### this is the initial testing space for the edit methods - does not work for the test db
+### this is the initial testing space for the edit methods 
 
-from copy_config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_COPY_TEST_TABLE
+from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_TABLE
 from pyairtable import Api
 import re
 import requests as rq
@@ -9,7 +9,7 @@ from pprint import pprint
 
 #inital vars
 api = Api(AIRTABLE_PAT) #personal access token
-test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_COPY_TEST_TABLE) #info about test table
+test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_TABLE) #info about test table
 full_tbl = test_tbl.all()
 
 def add_to_db(usr_field: str, usr_update: str):
@@ -21,7 +21,7 @@ def delete_from_db(item_id: str):
     test_tbl.delete(item_id)
 
 def get_fields(): 
-    url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_COPY_TEST_TABLE}'
+    url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TEST_TABLE}'
     headers = {'Authorization': f'Bearer {AIRTABLE_PAT}'}
     response = rq.get(url, headers=headers)
     data = response.json()
