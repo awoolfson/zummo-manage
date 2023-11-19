@@ -13,7 +13,7 @@ def retrieve_customer(cus_id: str): #retrives customer of a given id, found in t
     return stripe.Customer.retrieve(cus_id) #returns customer object
 
 
-def update_customer(cus_id: str, field: str, data, metafield: str = None): #updates a customer of a given id, updates the field entered with the data entered
+def update_customer(cus_id: str, field: str, data = None, metafield: str = None): #updates a customer of a given id, updates the field entered with the data entered
 #possible fields to update: "address", "balance", "description",  "email" and everything else listed here: https://stripe.com/docs/api/customers/update
 #metadata is a unique field that can be added with this function - metadata takes a dictonary as an argument, so metafield is an optional parameter that names the field of the dictonary
 #be careful with the data arguement because data can include multiple datatypes, be sure to use the api refrence linked above
