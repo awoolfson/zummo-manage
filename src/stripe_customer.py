@@ -2,7 +2,6 @@
 
 import stripe
 from config import STRIPE_KEY
-import hashlib
 
 stripe.api_key = STRIPE_KEY
 
@@ -59,5 +58,6 @@ def main():
         #print(retrieve_customer("cus_P0DzJ9mCuo4fTo"))
         #print(delete_customer("cus_P0EMjC7qn8kDda"))
         #print(search_customers("email:'steven@bob.com'"))
+        return
 
 main()
