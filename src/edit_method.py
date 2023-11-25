@@ -19,7 +19,7 @@ def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str): #add a comp
     usr_edit = {usr_field: usr_update}
     test_tbl.create(usr_edit)
 
-def edit_db(item_id: str, usr_field: dict, AIRTABLE_TABLE: str, usr_update: str): #adds a new entry to an existing field
+def edit_db(item_id: str, usr_field: dict, AIRTABLE_TABLE: str, usr_update: str): #edits an entry in an existing field
     url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TABLE}'
     updated_records = {"records": [{"id": item_id,
      "fields": {usr_field: usr_update}}]}
