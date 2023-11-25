@@ -19,7 +19,7 @@ def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str): #add a comp
     usr_edit = {usr_field: usr_update}
     test_tbl.create(usr_edit)
 
-def edit_db(item_id: str, usr_field: dict, AIRTABLE_TABLE: str, usr_update: str): #edits an entry in an existing field
+def edit_db(item_id: str, usr_field: dict, usr_update: str, AIRTABLE_TABLE: str): #edits an entry in an existing field
     url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TABLE}'
     updated_records = {"records": [{"id": item_id,
      "fields": {usr_field: usr_update}}]}
@@ -98,7 +98,7 @@ def main():
             item_id = input("What is the id of the item you would like to edit: ")
             fieldname = input("What is the field of the item you would like to edit: ") #going to replace the item corresponding with this id/field combination w/the user input
             usr_update = input("What is the text you want to insert into this area: ")
-            edit_db(item_id, fieldname, table, usr_update) 
+            edit_db(item_id, fieldname, usr_update, table) 
         else:
             print("Please answer a, d, e or u.")
             main()
