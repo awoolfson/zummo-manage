@@ -60,4 +60,14 @@ def main():
         #print(search_customers("email:'steven@bob.com'"))
         return
 
+##Still editing liines
+intent = stripe.PaymentIntent.create(
+    amount=1000,  # Amount in cents
+    currency='usd',
+    payment_method_types=['card']
+)
+
+# Print the client secret for the PaymentIntent (for client-side implementation)
+print(intent.client_secret)
+
 main()
