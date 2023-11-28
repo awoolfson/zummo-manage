@@ -11,7 +11,7 @@ def stripe_payment_confirmation(amountpayed: int, usr_currency: str, order_numbe
     edit_db(id, "Status", "Invoiced", AIRTABLE_TEST_SALES_ORDERS) #store stripe payment confirmation in airtable
     return stripe.PaymentIntent.create(amount=amountpayed, currency=usr_currency) #amountpayed is the positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00) from: https://stripe.com/docs/api/payment_intents/create?lang=python 
 
-def get_id_from_ordernum(order_number): #find our id from our ordernumber
+def get_id_from_ordernum(order_number: int): #find our id from our ordernumber
     url = f"https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TEST_SALES_ORDERS}"
     headers = {'Authorization': f'Bearer {AIRTABLE_PAT}'}
     response = rq.get(url, headers=headers)
