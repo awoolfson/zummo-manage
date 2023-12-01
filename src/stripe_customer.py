@@ -5,8 +5,42 @@ from config import STRIPE_KEY
 
 stripe.api_key = STRIPE_KEY
 
-def create_customer(usr_description: str = None, email_adr: str = None, phone_num: str = None, cus_address: dict = None):  #create customer, description, email, phone number, and address field are optional
-    return stripe.Customer.create(description=usr_description, email = email_adr, phone = phone_num, address = cus_address) #returns customer object created
+
+def create_customer(usr_description: str = None, email_adr: str = None, phone_num: str = None, cus_address: dict = None):
+    # Step 1: Create a payment method
+    payment_method = stripe.PaymentMethod.create(
+        type="card",
+        card={
+            "number": "4242424242424242",
+            "exp_month": 12,
+            "exp_year": 2034,
+            "cvc": "314",
+        },
+    )
+
+    # Step 2: Create a customer with the payment method
+    customer = stripe.Customer.create(
+        description=usr_description,
+        email=email_adr,
+        phone=phone_num,
+        address=cus_address,
+        payment_method=payment_method.id,  # Link the payment method to the customer
+        invoice_settings={
+            'default_payment_method': payment_method.id,  # Set the default payment method for invoices
+        },
+    )
+
+    return customer  # Return the customer object created
+
+# Example usage
+customer = create_customer(
+    usr_description="New Customer",
+    email_adr="customer@example.com",
+    phone_num="1234567890",
+    cus_address={"line1": "123 Main St", "city": "Cityville", "state": "CA", "postal_code": "12345", "country": "US"},
+)
+
+print(customer)
 
 def retrieve_customer(cus_id: str): #retrives customer of a given id, found in the "id" field 
     return stripe.Customer.retrieve(cus_id) #returns customer object
@@ -60,14 +94,5 @@ def main():
         #print(search_customers("email:'steven@bob.com'"))
         return
 
-##Still editing liines
-intent = stripe.PaymentIntent.create(
-    amount=1000,  # Amount in cents
-    currency='usd',
-    payment_method_types=['card']
-)
-
-# Print the client secret for the PaymentIntent (for client-side implementation)
-print(intent.client_secret)
 
 main()
