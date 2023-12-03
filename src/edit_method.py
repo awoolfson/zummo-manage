@@ -1,5 +1,3 @@
-### this is the initial testing space for the edit methods 
-
 from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID
 from pyairtable import Api
 import re
@@ -10,8 +8,6 @@ import json
 
 #inital vars - pyairtable
 api = Api(AIRTABLE_PAT) #personal access token
-
-
 
 def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str): #add a completely column to table, does not work on specific fields
     test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TABLE) #info about table 
