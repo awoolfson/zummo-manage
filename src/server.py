@@ -83,7 +83,7 @@ def edit_table():
     data = request.get_json()
     #print(data[0]["fields"]["Service Bike ID"])
     #print(data[0]["id"])
-    print(data[0]["fields"]["Requested Completion Date"])
+    #print(data[0]["fields"]["Requested Completion Date"])
     #print(get_id_from_service_id(data[0]["fields"]["Service Bike ID"]))
 
     edit_db(data[0]["id"], "Bike Description", data[0]["fields"]["Bike Description"], AIRTABLE_TEST_SERVICES)
