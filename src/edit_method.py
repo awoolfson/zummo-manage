@@ -1,5 +1,3 @@
-### this is the initial testing space for the edit methods 
-
 from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID
 from pyairtable import Api
 import re
@@ -11,13 +9,19 @@ import json
 #inital vars - pyairtable
 api = Api(AIRTABLE_PAT) #personal access token
 
-
-
-def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str):
+def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str): #add a completely column to table, does not work on specific fields
     test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TABLE) #info about table 
     full_tbl = test_tbl.all()
     usr_edit = {usr_field: usr_update}
     test_tbl.create(usr_edit)
+
+def edit_db(item_id: str, usr_field: dict, usr_update: str, AIRTABLE_TABLE: str): #edits an entry in an existing field
+    url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TABLE}'
+    updated_records = {"records": [{"id": item_id,
+     "fields": {usr_field: usr_update}}]}
+    headers = {'Authorization': f'Bearer {AIRTABLE_PAT}','Content-Type': 'application/json'}
+    data = json.dumps(updated_records)
+    response = rq.request("PATCH", url, headers=headers, data=data)
 
 def clear_id(item_id: str, AIRTABLE_TABLE: str): #deletes every entry of a certain id
     test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TABLE) #info about table
@@ -49,7 +53,7 @@ def main():
         if response.status_code != 200:
             print("Table does not exist.")
             main()
-        answer = input("What do you want to do - Add an item (a), Delete an item (d), or exit the function (e): ")
+        answer = input("What do you want to do - Add an item (a), Delete an item (d), Update an entry in a table (u), or exit the function (e): ")
         if answer == "e":
             return
         elif answer == "a":
@@ -82,7 +86,16 @@ def main():
             else:
                 print("Please answer 1 or 2.")
                 main()
+        elif answer == "u":
+            print(f"This is a refrence you can use to find the id and field of the item you would like to update")
+            test_tbl = api.table(AIRTABLE_TEST_BASE_ID, table) #info about table
+            full_tbl = test_tbl.all()
+            pprint(full_tbl)
+            item_id = input("What is the id of the item you would like to edit: ")
+            fieldname = input("What is the field of the item you would like to edit: ") #going to replace the item corresponding with this id/field combination w/the user input
+            usr_update = input("What is the text you want to insert into this area: ")
+            edit_db(item_id, fieldname, usr_update, table) 
         else:
-            print("Please answer a, d or e.")
+            print("Please answer a, d, e or u.")
             main()
 main()

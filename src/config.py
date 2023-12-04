@@ -22,3 +22,8 @@ AIRTABLE_TEST_INTERACTIONS = "tblYDL11X6PuvlnKA"
 AIRTABLE_TEST_NO_LONGER_USER_SALES = "tbldLNHp78lSBKaxZ"
 AIRTABLE_TEST_RENTAL = "tblATiIu8nRsN9JSW" 
 AIRTABLE_TEST_TABLE = "tblLBiaTHqXPozzOs" #this table only exists for testing
+AIRTABLE_STRIPE_TESTS = "tblB0tyxKfjkLbbW8" #this table exists for testing stripe integration
+
+#for stripe integration
+
+STRIPE_KEY = (os.getenv("STRIPE_KEY")) #-> str: #initalizes api key - stripe
