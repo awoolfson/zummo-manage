@@ -44,6 +44,17 @@ def extract_info_from_record(recordid): #use this if you want everything stored 
     else:
         return None
 
+def extract_tech_from_recordid(recordid):
+    url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TEST_EMPLOYEES_AND_VOLUNTEERS}/{recordid}'
+    headers = {'Authorization': f'Bearer {AIRTABLE_PAT}'}
+    response = rq.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        name = data['fields']['Name'] #the targetted record -> name -> return corresponding key
+        return name
+    else:
+        return "not found"
+
 def main():
     if __name__ == "__main__":
         # get user input for ID
