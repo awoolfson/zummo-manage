@@ -13,15 +13,28 @@ def add_to_db(usr_field: str, usr_update: str, AIRTABLE_TABLE: str): #add a comp
     test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TABLE) #info about table 
     full_tbl = test_tbl.all()
     usr_edit = {usr_field: usr_update}
-    test_tbl.create(usr_edit)
+    created_record = test_tbl.create(usr_edit)
+    
+    # Access the ID of the created record
+    record_id = created_record['id']
+    
+    return record_id
 
 def edit_db(item_id: str, usr_field: dict, usr_update: str, AIRTABLE_TABLE: str): #edits an entry in an existing field
     url = f'https://api.airtable.com/v0/{AIRTABLE_TEST_BASE_ID}/{AIRTABLE_TABLE}'
+    # Format the date string as ISO 8601
+    #if usr_field == "Requested Completion Date":
+    #    usr_update = datetime.strptime(usr_update, '%m/%d/%Y %I:%M%p')
+    #    usr_update = usr_update.replace(tzinfo=pytz.timezone('America/New_York'))
+    #    usr_update = usr_update.astimezone(pytz.UTC)
+    #    usr_update = usr_update.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
     updated_records = {"records": [{"id": item_id,
      "fields": {usr_field: usr_update}}]}
     headers = {'Authorization': f'Bearer {AIRTABLE_PAT}','Content-Type': 'application/json'}
     data = json.dumps(updated_records)
     response = rq.request("PATCH", url, headers=headers, data=data)
+
+    
 
 def clear_id(item_id: str, AIRTABLE_TABLE: str): #deletes every entry of a certain id
     test_tbl = api.table(AIRTABLE_TEST_BASE_ID, AIRTABLE_TABLE) #info about table
