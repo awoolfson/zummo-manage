@@ -1,5 +1,5 @@
 from pyairtable import Api
-from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_SERVICES
+from config import AIRTABLE_PAT, AIRTABLE_TEST_BASE_ID, AIRTABLE_TEST_SERVICES, AIRTABLE_TEST_EMPLOYEES_AND_VOLUNTEERS
 import requests as rq
 from get_records import get_records
 from pprint import pprint
