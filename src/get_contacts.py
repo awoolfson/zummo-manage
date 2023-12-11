@@ -25,4 +25,4 @@ def main():
         phone_number = input("Enter a phone number: ")
         print(get_contacts_by_phone(phone_number))
         
-main()
+#main()
