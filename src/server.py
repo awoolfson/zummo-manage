@@ -75,8 +75,9 @@ def add_to_table():
     default_time = time(20, 0)  # 8:00 PM
 
     def parse_date_string(date_str):
-        if date_str not in data or not data[date_str]:
+        if "dropOffDate" not in data or not data["dropOffDate"]:
             # If dropOffDate is not present or is empty, do nothing
+            print("here")
             return
         try:
             # Try to parse the date string with time
@@ -93,6 +94,7 @@ def add_to_table():
         # Format the UTC datetime as an ISO 8601 string
         iso8601_string = dt_object_utc.strftime('%Y-%m-%dT%H:%M:%S.%fZ')[:-3] + 'Z'
         return iso8601_string
+    print(data["dropOffDate"])
 
     # Extract data from the request and add it to the Airtable using the modified add_to_db method
     record_id = add_to_db("Service Requested", data["Service Requested"], AIRTABLE_TEST_SERVICES)
